@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IQueryable<Project>
+<!--Bootstrap -->
+<header>
+    <h1 class="alert-danger"><b>Look for a great Book here</b></h1>
+</header>
+
+@foreach (var x in Model)
+{
+    <div class="active">
+        <br />
+        <h3 class="align-content-center">Book Title: @x.Title</h3>
+        <p class="align-content-center">Book ID: @x.BookKey</p>
+        <p>Name of the Author: @x.Author</p>
+        <p>Publisher: @x.Publisher</p>
+        <p>ISBN: @x.ISBN</p>
+        <p>Category: @x.Category</p>
+        <p>Price: $@x.Price</p>
+    </div>
+    <br />
+
+}
+<!--Bootstrap -->
+<img class="rounded-circle" src="~/img/Something.jpg" />
+
+<!--
+<div>
+    <table>
+        <thead>
+            <tr>Book Id</tr>
+            <tr>Book Title</tr>
+            <tr>Author</tr>
+            <tr>Publisher</tr>
+            <tr>ISBN</tr>
+            <tr>Category</tr>
+            <tr>Price</tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+-->
