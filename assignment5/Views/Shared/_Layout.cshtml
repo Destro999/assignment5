@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">assignment5</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Book Reporting</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,6 +32,9 @@
         </nav>
     </header>
     <!--Bootstrap -->
+    <div class="text-center" style="font:bold;">
+        <span class="navbar-brand ml-2 text-center" style="font:bold">These are Professor Hilton's Favorite Books</span>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -41,7 +44,7 @@
     <footer class="border-top footer text-muted">
         <!--To go to the Home page and Privacy page, nothing has changed-->
         <!--Bootstrap -->
-        <div class="alert-success">
+        <div class="alert-success text-center">
             &copy; 2021 - assignment5 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

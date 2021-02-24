@@ -9,7 +9,7 @@ using assignment5.Models;
 namespace assignment5.Migrations
 {
     [DbContext(typeof(BooksDbContext))]
-    [Migration("20210217173953_Initial")]
+    [Migration("20210224160403_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace assignment5.Migrations
 
                     b.Property<long>("ISBN")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("Pages")
+                        .HasColumnType("int");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");

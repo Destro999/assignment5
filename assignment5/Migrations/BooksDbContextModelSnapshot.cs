@@ -36,6 +36,9 @@ namespace assignment5.Migrations
                     b.Property<long>("ISBN")
                         .HasColumnType("bigint");
 
+                    b.Property<int>("Pages")
+                        .HasColumnType("int");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
 

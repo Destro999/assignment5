@@ -17,7 +17,8 @@ namespace assignment5.Migrations
                     Publisher = table.Column<string>(nullable: false),
                     ISBN = table.Column<long>(nullable: false),
                     Category = table.Column<string>(nullable: false),
-                    Price = table.Column<double>(nullable: false)
+                    Price = table.Column<double>(nullable: false),
+                    Pages = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using assignment5.Models.ViewModels;
 
 namespace assignment5.Controllers
 {
@@ -15,6 +16,9 @@ namespace assignment5.Controllers
 
         private IBookRepository _repository;
 
+        //Return Pages 5 per page
+        public int PageSize = 5;
+
         public HomeController(ILogger<HomeController> logger, IBookRepository repository)
         {
             _logger = logger;
@@ -22,9 +26,24 @@ namespace assignment5.Controllers
         }
 
         //To pass the databases info to the Index view I've added above the repository info as shown in the videos
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(_repository.Projects);
+
+            //Return Pages 5 per page
+            return View(new ProjectListViewModel
+            {
+                Projects = _repository.Projects
+                    .OrderBy(p => p.BookKey)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize)
+                ,
+                Paginginfo = new Paginginfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalNumItems = _repository.Projects.Count()
+                }
+            });
         }
 
         public IActionResult Privacy()
