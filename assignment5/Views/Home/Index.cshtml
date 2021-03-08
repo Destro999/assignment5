@@ -5,23 +5,16 @@
 @model ProjectListViewModel
 <!--New Bootstraps used for the website: border-right So that each book is seperated by a line, text-center which will center my text at the top and and in the footer, 
     bg-dark text-white which made a dark border around the links to the other pages -->
+
 <div class="row">
+    <div class="column">
+        <vc:navigation-menu />
+    </div>
     <div class="column">
         <div class="border-right" style="border-width:10px;">
             @foreach (var x in Model.Projects)
             {
-                <div class="active border-bottom">
-                    <br />
-                    <h3 class="align-content-center">Book Title: @x.Title</h3>
-                    <p class="align-content-center">Book ID: @x.BookKey</p>
-                    <p>Name of the Author: @x.Author</p>
-                    <p>Publisher: @x.Publisher</p>
-                    <p>ISBN: @x.ISBN</p>
-                    <p>Category: @x.Category</p>
-                    <p>Price: $@x.Price</p>
-                    <p>Pages: @x.Pages</p>
-                </div>
-                <br />
+                <partial name="ProjectSummary" model="x" />
 
             }
         </div>
@@ -29,6 +22,9 @@
 
     <div class="column" style="padding-left:6%; padding-top:10%;">
         <img class="rounded-circle" src="~/img/Something.jpg" />
+        <div class="text-center bg-dark text-white">
+            <div page-model="@Model.Paginginfo" page-action="Index" page-url-category="@Model.CurrentCategory"></div>
+        </div>
     </div>
 </div>
 
@@ -36,7 +32,5 @@
 
 
 
-<div class="text-center bg-dark text-white">
-    <div page-model="@Model.Paginginfo" page-action="Index"></div>
-</div>
+
 

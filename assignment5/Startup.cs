@@ -30,7 +30,7 @@ namespace assignment5
 
             services.AddDbContext<BooksDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:BooksandNoble"]);
+                options.UseSqlite(Configuration["ConnectionStrings:BooksandNoble"]);
             });
 
             services.AddScoped<IBookRepository, EFCBookRepository>();
@@ -59,8 +59,21 @@ namespace assignment5
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    "pagination",
+                //Different Endpoints added to make code more user friendly
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("page",
+                    "Projects/{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                     new { Controller = "Home", action = "Index", page =1 });
+
+
+                endpoints.MapControllerRoute("pagination",
                     "P{page}",
                     new { Controller = "Home", action = "Index" });
 

@@ -26,13 +26,15 @@ namespace assignment5.Controllers
         }
 
         //To pass the databases info to the Index view I've added above the repository info as shown in the videos
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string category, int page = 1)
         {
 
             //Return Pages 5 per page
             return View(new ProjectListViewModel
             {
+                //filter by category
                 Projects = _repository.Projects
+                    .Where(p => category == null || p.Category == category)
                     .OrderBy(p => p.BookKey)
                     .Skip((page - 1) * PageSize)
                     .Take(PageSize)
@@ -41,8 +43,11 @@ namespace assignment5.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalNumItems = _repository.Projects.Count()
-                }
+                    TotalNumItems = category== null ? _repository.Projects.Count() :
+                    //Page number fixed for categories
+                        _repository.Projects.Where (x => x.Category == category).Count()
+                },
+                CurrentCategory = category
             });
         }
 

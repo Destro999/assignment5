@@ -26,6 +26,9 @@ namespace assignment5.infastructure
         public ViewContext ViewContext { get; set; }
         public Paginginfo PageModel { get; set; }
         public string PageAction { get; set; }
+        
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url")]
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -36,6 +39,11 @@ namespace assignment5.infastructure
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
+
+                PageUrlValues["page"] = i;
+                tag.Attributes["href"] = urlHelper.Action(PageAction,
+                    PageUrlValues);
+
                 tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
                 tag.InnerHtml.Append(i.ToString());
 
