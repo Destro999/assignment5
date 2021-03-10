@@ -11,7 +11,7 @@ namespace assignment5.Migrations
                 columns: table => new
                 {
                     BookKey = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(nullable: false),
                     Author = table.Column<string>(nullable: false),
                     Publisher = table.Column<string>(nullable: false),

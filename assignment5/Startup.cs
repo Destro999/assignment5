@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using assignment5.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace assignment5
 {
@@ -18,6 +19,7 @@ namespace assignment5
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; set; }
@@ -34,6 +36,11 @@ namespace assignment5
             });
 
             services.AddScoped<IBookRepository, EFCBookRepository>();
+            services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         }
 
@@ -53,9 +60,17 @@ namespace assignment5
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Xss-Protection", "1");
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
@@ -78,6 +93,8 @@ namespace assignment5
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
 
             });
 

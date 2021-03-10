@@ -8,9 +8,6 @@
 
 <div class="row">
     <div class="column">
-        <vc:navigation-menu />
-    </div>
-    <div class="column">
         <div class="border-right" style="border-width:10px;">
             @foreach (var x in Model.Projects)
             {
@@ -19,12 +16,16 @@
             }
         </div>
     </div>
+    <div class="column">
+        <vc:navigation-menu />
+    </div>
+    <div class="text-center bg-dark text-white">
+        <div page-model="@Model.Paginginfo" page-action="Index" page-url-category="@Model.CurrentCategory"></div>
+    </div>
 
     <div class="column" style="padding-left:6%; padding-top:10%;">
         <img class="rounded-circle" src="~/img/Something.jpg" />
-        <div class="text-center bg-dark text-white">
-            <div page-model="@Model.Paginginfo" page-action="Index" page-url-category="@Model.CurrentCategory"></div>
-        </div>
+
     </div>
 </div>
 

@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!--I am using the normal asp core app to have a nice feel to the app-->
     <meta charset="utf-8" />
@@ -26,6 +27,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item"> 
+                            <vc:cart-summary />
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -37,7 +41,7 @@
     </div>
     <div class="container">
         <main role="main" class="pb-3">
-            
+
             @RenderBody()
         </main>
     </div>
